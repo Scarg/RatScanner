@@ -19,6 +19,7 @@ namespace RatScanner
 			FHD,        // 1920x1080
 			QHD,        // 2560x1440
 			UHD,        // 3840x2160
+			DFHD,		// 3840x1080 - Super Wide 32:9
 		}
 
 		internal static Dictionary<Resolution, Vector2> ResolutionDict = new Dictionary<Resolution, Vector2>()
@@ -30,6 +31,7 @@ namespace RatScanner
 			{Resolution.FHD, new Vector2(1920, 1080)},
 			{Resolution.QHD, new Vector2(2560, 1440)},
 			{Resolution.UHD, new Vector2(3840, 2160)},
+			{Resolution.DFHD, new Vector2(3840, 1080)},
 		};
 
 		// Version
@@ -124,6 +126,7 @@ namespace RatScanner
 					case Resolution.FHD: LoadFHD(); break;
 					case Resolution.QHD: LoadQHD(); break;
 					case Resolution.UHD: LoadUHD(); break;
+					case Resolution.DFHD: LoadDFHD(); break;
 					default: throw new ArgumentOutOfRangeException(nameof(value), "Unknown screen resolution");
 				}
 
@@ -200,6 +203,14 @@ namespace RatScanner
 			IconScan.ItemSlotSize = 126;
 			ToolTip.HeightOffset = 10;
 		}
+
+		private static void LoadDFHD()
+		{
+			NameScan.Marker       = Resources.markerDFHD;
+			NameScan.MarkerShort  = Resources.markerShortDFHD;
+			IconScan.ItemSlotSize = 63;
+			ToolTip.HeightOffset  = 5;
+		}
 		#endregion
 
 		internal static float GetScreenScaleFactor()
@@ -213,6 +224,7 @@ namespace RatScanner
 				Resolution.FHD => 1080f / 1080f,
 				Resolution.QHD => 1440f / 1080f,
 				Resolution.UHD => 2160f / 1080f,
+				Resolution.DFHD => 1080f / 1080f,
 				_ => throw new InvalidOperationException("Unknown ScreenResolution"),
 			};
 		}
