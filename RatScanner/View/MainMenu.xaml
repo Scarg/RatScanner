@@ -8,6 +8,7 @@
 	d:DesignWidth="280"
 	x:ClassModifier="internal"
 	Background="#444444"
+	MouseDoubleClick="OnMouseDoubleClick"
 	mc:Ignorable="d">
 
 	<Grid Margin="10,0">

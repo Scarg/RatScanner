@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using RatScanner.ViewModel;
 
@@ -26,6 +27,14 @@ namespace RatScanner.View
 		private void OpenSettingsWindow(object sender, RoutedEventArgs e)
 		{
 			PageSwitcher.Instance.Navigate(new Settings());
+		}
+
+		private void OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			PageSwitcher.Instance.CollapseTitleBar();
+			PageSwitcher.Instance.SizeToContent = SizeToContent.WidthAndHeight;
+			PageSwitcher.Instance.SetBackgroundOpacity(RatConfig.MinimalUi.Opacity / 100f);
+			PageSwitcher.Instance.Navigate(new MinimalMenu());
 		}
 
 		public void UtilizeState(object state)
